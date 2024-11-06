@@ -7,8 +7,6 @@ This repository contains the Software Requirements Specification (SRS) for the *
 1. [Introduction](#introduction)
 2. [Features](#features)
 3. [Team](#team)
-4. [Installation and Setup](#installation-and-setup)
-
 
 ---
 
@@ -39,13 +37,4 @@ The **Hotel Website Project** aims to provide a streamlined and user-friendly in
 - Eng.Ziad Yasser Mahmoud
 - Eng.Mohammed Abu Bakr Saadi
   
----
-
-## Installation and Setup
-
-To get started with the development environment:
-
-```bash
-# Clone this repository
-git clone https://github.com/Menna-23/SE.git
 
