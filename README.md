@@ -6,20 +6,15 @@ This repository contains the Software Requirements Specification (SRS) for the *
 
 1. [Introduction](#introduction)
 2. [Features](#features)
-3. [Installation and Setup](#installation-and-setup)
-4. [Usage](#usage)
-5. [Documentation Structure](#documentation-structure)
-6. [Team](#team)
-7. [License](#license)
+3. [Team](#team)
+4. [Installation and Setup](#installation-and-setup)
+
 
 ---
 
 ## Introduction
 
 The **Hotel Website Project** aims to provide a streamlined and user-friendly interface for hotel guests to explore services, view available rooms, and make reservations online. This documentation is intended to guide the development team, stakeholders, and contributors in understanding the project's goals and requirements.
-
-**Version**: 1.0  
-**Date**: 3/11/2024  
 
 ---
 
@@ -31,6 +26,19 @@ The **Hotel Website Project** aims to provide a streamlined and user-friendly in
 - **Responsive Design**: Accessible and fully functional across devices.
 - **Hotel Overview**: Comprehensive information on hotel services and policies.
 
+---
+
+## Team
+
+- Eng.Menna Yasser Afifi
+- Eng.Malak Hassan Suleiman
+- Eng.Asmaa Anwar Mohammed
+- Eng.Marwan Saad Abdel Sabour
+- Eng.Abdelrhman Gamal Abu Shama
+- Eng.Gamal Ashraf Darwish
+- Eng.Ziad Yasser Mahmoud
+- Eng.Mohammed Abu Bakr Saadi
+  
 ---
 
 ## Installation and Setup
