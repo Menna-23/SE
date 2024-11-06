@@ -31,7 +31,7 @@ The **Hotel Website Project** aims to provide a streamlined and user-friendly in
 ## Team
 
 - Eng.Menna Yasser Afifi
-- Eng.Malak Hassan Suleiman
+- Eng.Malak Hassan Soliman
 - Eng.Asmaa Anwar Mohammed
 - Eng.Marwan Saad Abdel Sabour
 - Eng.Abdelrhman Gamal Abu Shama
