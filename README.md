@@ -7,7 +7,7 @@ This repository contains the Software Requirements Specification (SRS) for the *
 1. [Introduction](#introduction)
 2. [Features](#features)
 3. [Team](#team)
-
+4. [Demo](#demo)
 ---
 
 ## Introduction
@@ -39,7 +39,8 @@ The **Hotel Website Project** aims to provide a streamlined and user-friendly in
 
 ---
 
-## [Demo Front-End](https://menna-23.github.io/SE/docs/E-hotel/index.html)
+## Demo
+- [Demo Front-End](https://menna-23.github.io/SE/docs/E-hotel/index.html)
 
 
 
