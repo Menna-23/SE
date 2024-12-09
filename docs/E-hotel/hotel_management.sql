@@ -18,77 +18,77 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: hotel_management
+-- Database: `hotel_management`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table bookings
+-- Table structure for table `bookings`
 --
 
-CREATE TABLE bookings (
-  booking_id int(11) NOT NULL,
-  user_id int(11) NOT NULL,
-  room_id int(11) NOT NULL,
-  check_in_date date NOT NULL,
-  check_out_date date NOT NULL,
-  total_price decimal(10,2) NOT NULL,
-  status enum('confirmed','pending','canceled') DEFAULT 'pending'
+CREATE TABLE `bookings` (
+  `booking_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `check_in_date` date NOT NULL,
+  `check_out_date` date NOT NULL,
+  `total_price` decimal(10,2) NOT NULL,
+  `status` enum('confirmed','pending','canceled') DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table history
+-- Table structure for table `history`
 --
 
-CREATE TABLE history (
-  history_id int(11) NOT NULL,
-  booking_id int(11) NOT NULL,
-  action_date datetime NOT NULL DEFAULT current_timestamp(),
-  action_type enum('payment','cancellation','modification') NOT NULL,
-  details text DEFAULT NULL,
-  amount decimal(10,2) DEFAULT NULL
+CREATE TABLE `history` (
+  `history_id` int(11) NOT NULL,
+  `booking_id` int(11) NOT NULL,
+  `action_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `action_type` enum('payment','cancellation','modification') NOT NULL,
+  `details` text DEFAULT NULL,
+  `amount` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table rooms
+-- Table structure for table `rooms`
 --
 
-CREATE TABLE rooms (
-  room_id int(11) NOT NULL,
-  room_number varchar(10) NOT NULL,
-  type varchar(50) NOT NULL,
-  price decimal(10,2) NOT NULL,
-  status enum('available','booked','maintenance') DEFAULT 'available',
-  description text DEFAULT NULL
+CREATE TABLE `rooms` (
+  `room_id` int(11) NOT NULL,
+  `room_number` varchar(10) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `status` enum('available','booked','maintenance') DEFAULT 'available',
+  `description` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table users
+-- Table structure for table `users`
 --
 
-CREATE TABLE users (
-  user_id int(11) NOT NULL,
-  name varchar(100) NOT NULL,
-  email varchar(100) NOT NULL,
-  password varchar(255) NOT NULL,
-  phone varchar(15) DEFAULT NULL,
-  role enum('admin','staff','customer') NOT NULL,
-  age int(11) NOT NULL,
-  national_id int(16) NOT NULL
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `role` enum('admin','staff','customer') NOT NULL,
+  `age` int(11) NOT NULL,
+  `national_id` int(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table users
+-- Dumping data for table `users`
 --
 
-INSERT INTO users (user_id, name, email, password, phone, role, age, national_id) VALUES
+INSERT INTO `users` (`user_id`, `name`, `email`, `password`, `phone`, `role`, `age`, `national_id`) VALUES
 (7, '', '', '', '', '', 0, 0),
 (8, '11', 'emai@ggg.com', '11', '11', 'customer', 11, 11),
 (10, '11', 'eai@ggg.com', '11', '11', 'customer', 11, 111),
@@ -101,78 +101,78 @@ INSERT INTO users (user_id, name, email, password, phone, role, age, national_id
 --
 
 --
--- Indexes for table bookings
+-- Indexes for table `bookings`
 --
-ALTER TABLE bookings
-  ADD PRIMARY KEY (booking_id),
-  ADD KEY user_id (user_id),
-  ADD KEY room_id (room_id);
+ALTER TABLE `bookings`
+  ADD PRIMARY KEY (`booking_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `room_id` (`room_id`);
 
 --
--- Indexes for table history
+-- Indexes for table `history`
 --
-ALTER TABLE history
-  ADD PRIMARY KEY (history_id),
-  ADD KEY booking_id (booking_id);
+ALTER TABLE `history`
+  ADD PRIMARY KEY (`history_id`),
+  ADD KEY `booking_id` (`booking_id`);
 
 --
--- Indexes for table rooms
+-- Indexes for table `rooms`
 --
-ALTER TABLE rooms
-  ADD PRIMARY KEY (room_id);
+ALTER TABLE `rooms`
+  ADD PRIMARY KEY (`room_id`);
 
 --
--- Indexes for table users
+-- Indexes for table `users`
 --
-ALTER TABLE users
-  ADD PRIMARY KEY (user_id),
-  ADD UNIQUE KEY email (email),
-  ADD UNIQUE KEY national_id (national_id);
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `national_id` (`national_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table bookings
+-- AUTO_INCREMENT for table `bookings`
 --
-ALTER TABLE bookings
-  MODIFY booking_id int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `bookings`
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table history
+-- AUTO_INCREMENT for table `history`
 --
-ALTER TABLE history
-  MODIFY history_id int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `history`
+  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table rooms
+-- AUTO_INCREMENT for table `rooms`
 --
-ALTER TABLE rooms
-  MODIFY room_id int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `rooms`
+  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table users
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE users
-  MODIFY user_id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table bookings
+-- Constraints for table `bookings`
 --
-ALTER TABLE bookings
-  ADD CONSTRAINT bookings_ibfk_1 FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE,
-  ADD CONSTRAINT bookings_ibfk_2 FOREIGN KEY (room_id) REFERENCES rooms (room_id) ON DELETE CASCADE;
+ALTER TABLE `bookings`
+  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`room_id`) ON DELETE CASCADE;
 
 --
--- Constraints for table history
+-- Constraints for table `history`
 --
-ALTER TABLE history
-  ADD CONSTRAINT history_ibfk_1 FOREIGN KEY (booking_id) REFERENCES bookings (booking_id) ON DELETE CASCADE;
+ALTER TABLE `history`
+  ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`booking_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
