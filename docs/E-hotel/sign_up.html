@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body>
+    <form action="reg.php" method="post">
+        
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        
+        <label for="pho">Phone Number:</label>
+        <input type="number" id="pho" name="pho" required>
+        
+        
+        <input type="hidden" name="role" value="customer">
+        
+        
+        <label for="nat_id">National ID:</label>
+        <input type="number" id="nat_id" name="nat_id" required>
+        
+        
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+        
+        
+        <label for="Password">Password:</label>
+        <input type="password" id="Password" name="Password" required>
+        
+        
+        <button type="submit">Sign Up</button>
+    </form>
+</body>
+</html>
