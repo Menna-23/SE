@@ -1,83 +1,81 @@
 /* General Styles */
 body {
     font-family: 'Poppins', Arial, sans-serif;
-    background-color: rgba(255, 253, 253, 0.4); /* خلفية فاتحة مع شفافية */
-    background-image: url('assets/pay.jpg'); /* استبدال 'header.jpg' بمسار الصورة */
-    background-size: cover; /* لجعل الصورة تغطي الشاشة بالكامل */
-    background-repeat: no-repeat; /* منع تكرار الصورة */
-    background-position: center center; /* ضبط الصورة في منتصف الشاشة */
+    background-color: rgba(255, 253, 253, 0.4); 
+    background-image: url('assets/pay.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-position: center center; 
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center; /* تمركز الصندوق أفقيًا */
-    align-items: center; /* تمركز الصندوق عموديًا */
-    height: 100vh; /* تأخذ الصفحة كامل ارتفاع الشاشة */
-    width: 100%; /* تأخذ الصفحة كامل عرض الشاشة */
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    width: 100%; 
 }
 
-/* Header Styles */
+
 header {
-    background-color: rgba(132, 134, 135, 0.4); /* لون مع شفاف لتناسب الخلفية */
+    background-color: rgba(132, 134, 135, 0.4); 
     color: rgb(58, 58, 58);
     text-align: center;
     padding: 0px;
     font-size: 15px;
     font-weight: bold;
-    width: 100%; /* عرض الهيدر على كامل الصفحة */
-    position: absolute; /* وضع الهيدر في الأعلى دائمًا */
+    width: 100%; 
+    position: absolute; 
     top: 0;
     left: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 1; /* وضع الهيدر فوق الصندوق */
-}
+    z-index: 1; 
 
-/* Form Container */
+
 form {
-    background: rgba(0, 0, 0, 0.2); /* White background for contrast */
+    background: rgba(0, 0, 0, 0.2); 
     border-radius: 12px;
     padding: 30px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); 
     width: 100%;
     max-width: 450px;
     display: flex;
     flex-direction: column;
-    border: 1px solid #f3eeee; /* Light border for definition */
+    border: 1px solid #f3eeee; 
 }
 
-/* Label Styles */
-/* Label Styles */
+
 label {
     font-size: 16px;
     color: #f1ecec;
     margin-bottom: 10px;
-    font-weight: 600; /* Bold labels for emphasis */
-    text-shadow: 1px 1px 5px rgb(0, 0, 0); /* الظل الفاتح خلف النص */
+    font-weight: 600;
+    text-shadow: 1px 1px 5px rgb(0, 0, 0); 
 }
 
 
-/* Input Styles */
+
 input[type="text"] {
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
-    border: 1px solid #b0bec5; /* Light gray border */
+    border: 1px solid #b0bec5; 
     border-radius: 8px;
     font-size: 16px;
-    background: #f9f9f9; /* Slightly off-white background */
+    background: #f9f9f9; 
     transition: all 0.3s ease;
     box-sizing: border-box;
 }
 
 input[type="text"]:focus {
     outline: none;
-    border-color: #566060; /* Highlight border on focus */
-    background: #e0f7fa; /* Light blue focus background */
+    border-color: #566060; 
+    background: #e0f7fa; 
 }
 
-/* Button Styles */
+
 button {
     width: 100%;
-    background-color: #474c4c; /* Teal button */
+    background-color: #474c4c; 
     color: white;
     border: none;
     padding: 14px;
@@ -86,15 +84,15 @@ button {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Button shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 button:hover {
-    background-color: #838586; /* Darker teal on hover */
-    transform: translateY(-2px); /* Lift effect on hover */
+    background-color: #838586; 
+    transform: translateY(-2px); 
 }
 
 button:active {
-    transform: translateY(0); /* Reset on click */
+    transform: translateY(0); 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
