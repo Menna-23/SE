@@ -1,0 +1,92 @@
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-size: cover; 
+    background-position: center; 
+    background-attachment: fixed; 
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6); 
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3); 
+}
+
+.header-form {
+    background-color: rgba(0, 0, 0, 0.7); 
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 20px; 
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #3c3c3c;
+    text-shadow: 1px 1px 3px rgba(145, 145, 145, 0.5);
+}
+
+input[type="date"],
+select {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px;
+    font-size: 14px;
+    width: 200px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); 
+}
+
+select {
+    appearance: none; 
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #888;
+    box-shadow: 0px 0px 5px #888;
+}
+
+
+.find-rooms-btn {
+    background-color: #313233;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.find-rooms-btn:hover {
+    background-color: #666768; 
+    transform: translateY(-2px);
+}
+
+.find-rooms-btn:active {
+    background-color: #545658; 
+    transform: translateY(0);
+}

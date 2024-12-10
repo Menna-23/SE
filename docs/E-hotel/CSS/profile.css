@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    background-color: #f4f4f4;
+}
+
+
+h1 {
+    font-size: 36px;
+    color: #ffffff;
+    text-align: center;
+}
+header {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: rgb(0, 0, 0);
+    padding: 5px 10px;
+    text-align: right;
+    
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    width: calc(100% - 20px);
+}
+
+header button {
+    background-color: #595757;
+    color: white;
+    padding: 4px 8px;
+    border: none;
+    cursor: pointer;
+    border-radius: 1px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+header button:hover {
+    background-color: #3a3939;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; /* تجعل العناصر تحت بعض */
+    justify-content: flex-start; /* محاذاة العناصر من الأعلى */
+    padding: 20px;
+    margin-top: 60px;
+}
+
+
+.section {
+    background-color: white;
+    width: 30%;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+    margin-top: 0;
+}
+
+.section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.section ul li {
+    margin: 10px 0;
+}
+
+.section ul li span {
+    font-weight: bold;
+}
