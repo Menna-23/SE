@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     if ($stmt->execute()) {
       // Redirect to sign-in page after successful signup
-      header("Location: sign_in.html");
+      header("Location: ../HTML/sign_in.html");
       die;
     } else {
       echo "Error: " . $stmt->error;

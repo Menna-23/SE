@@ -13,6 +13,6 @@ function check_login($conn)
         }
     }
     //redirect to login
-    header("loction: sign_in.html");
+    header("loction: ../HTML/sign_in.html");
     die;
 }

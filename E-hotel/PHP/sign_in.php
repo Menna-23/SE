@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (password_verify($password, $user_data['password'])) {
                 // Password matches
                 $_SESSION['user_id'] = $user_data['user_id'];
-                header("Location: index.html");
+                header("Location: ../HTML/index.html");
                 die;
             } else {
                 echo "Invalid email or password.";
