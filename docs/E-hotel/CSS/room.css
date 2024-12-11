@@ -93,3 +93,8 @@ main {
 .room button:hover {
     background-color: #313233;
 }
+
+.error {
+    color: red;
+    font-weight: bold;
+}

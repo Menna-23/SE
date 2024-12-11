@@ -41,14 +41,14 @@
 
   <section class="booking">
     <div class="section__container booking__container">
-      <form action="/">
+      <form action="../PHP/search_rooms.php" method="post">
         <div class="input__group">
           <label for="arrival">Arrival Date</label>
-          <input type="date" placeholder="Your Arrival Date" />
+          <input type="date" placeholder="Your Arrival Date" name="check_in"/>
         </div>
         <div class="input__group">
           <label for="departure">Departure Date</label>
-          <input type="date" placeholder="Your Departure Date" />
+          <input type="date" placeholder="Your Departure Date" name="check_out" />
         </div>
         <div class="input__group">
           <label for="type">Room Type</label>
