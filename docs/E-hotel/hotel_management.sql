@@ -67,6 +67,31 @@ CREATE TABLE `rooms` (
   `description` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table rooms
+--
+
+INSERT INTO rooms (room_id, room_number, type, price, status, description) VALUES
+(1, '201', 'room', '599.00', 'available', NULL),
+(2, '202', 'room', '599.00', 'available', NULL),
+(3, '203', 'room', '599.00', 'available', NULL),
+(4, '204', 'room', '599.00', 'available', NULL),
+(5, '205', 'room', '599.00', 'available', NULL),
+(6, '206', 'room', '599.00', 'available', NULL),
+(7, '207', 'room', '599.00', 'available', NULL),
+(8, '208', 'room', '599.00', 'available', NULL),
+(9, '209', 'room', '599.00', 'available', NULL),
+(11, '301', 'Suite', '999.00', 'available', NULL),
+(12, '302', 'Suite', '999.00', 'available', NULL),
+(13, '303', 'Suite', '999.00', 'available', NULL),
+(14, '304', 'Suite', '999.00', 'available', NULL),
+(15, '305', 'Suite', '999.00', 'available', NULL),
+(16, '401', 'Penthouse', '799.00', 'booked', NULL),
+(17, '402', 'Penthouse', '799.00', 'booked', NULL),
+(18, '403', 'Penthouse', '799.00', 'booked', NULL),
+(19, '404', 'Penthouse', '799.00', 'booked', NULL),
+(20, '405', 'Penthouse', '799.00', 'booked', NULL);
+
 -- --------------------------------------------------------
 
 --
