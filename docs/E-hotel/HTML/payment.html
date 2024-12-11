@@ -13,7 +13,7 @@
         <h1>Payment</h1>
     </header>
 
-    <form action="process_payment.php" method="post">
+    <form action="../PHP/process_payment.php" method="post">
         <label for="card">Card Number:</label>
         <input type="text" id="card" name="card" required>
 
@@ -23,7 +23,7 @@
         <label for="cvv">CVV:</label>
         <input type="text" id="cvv" name="cvv" required>
 
-        <button type="submit">Pay Now</button>
+        <button type="submit" name="pay">Pay Now</button>
     </form>
 </body>
 
