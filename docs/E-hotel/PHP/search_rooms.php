@@ -1,6 +1,16 @@
 <?php
 session_start();
 include("connection.php");
+include("function.php");
+if (isset($_POST['profile'])) {
+    if (isset($_SESSION['user_id'])) {
+        header("Location: ./profile.php");
+        die();
+    } else {
+        header("Location: ../HTML/sign_in.html");
+        exit();
+    }
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $type = trim($_POST['type']);
@@ -29,21 +39,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($result->num_rows > 0) {
             $room = $result->fetch_assoc();
-            
+
             $_SESSION['room'] = $room;
             header("Location: averooms.php");
             exit();
         } else {
-            
+
             $_SESSION['error_message'] = "No rooms avaliable on this type.";
             header("Location: averooms.php");
             exit();
         }
     } else {
-        
+
         $_SESSION['error_message'] = "Room type is required.";
         header("Location: averooms.php");
         exit();
     }
 }
-?>

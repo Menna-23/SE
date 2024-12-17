@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../CSS/styles.css" />
+  <link rel="stylesheet" href="./CSS/styles.css" />
   <title>Web Design </title>
 </head>
 
@@ -28,6 +28,9 @@
         <li><a href="#feature">Feature</a></li>
         <li><a href="#news">TOP RATED ROOMS</a></li>
       </ul>
+      <form action="./PHP/search_rooms.php" method="post">
+        <button type="submit" name="profile">Profile</button>
+      </form>
     </div>
   </nav>
 
@@ -41,10 +44,10 @@
 
   <section class="booking">
     <div class="section__container booking__container">
-      <form action="../PHP/search_rooms.php" method="post">
+      <form action="./PHP/search_rooms.php" method="post">
         <div class="input__group">
           <label for="arrival">Arrival Date</label>
-          <input type="date" placeholder="Your Arrival Date" name="check_in"/>
+          <input type="date" placeholder="Your Arrival Date" name="check_in" />
         </div>
         <div class="input__group">
           <label for="departure">Departure Date</label>
@@ -67,7 +70,7 @@
     <div class="section__container about__container">
       <div class="about__grid">
         <div class="about__image">
-          <img src="../assets/about-1.jpg" alt="about" />
+          <img src="./assets/about-1.jpg" alt="about" />
         </div>
         <div class="about__card">
           <span><i class="ri-user-line"></i></span>
@@ -77,7 +80,7 @@
           </p>
         </div>
         <div class="about__image">
-          <img src="../assets/about-2.jpg" alt="about" />
+          <img src="./assets/about-2.jpg" alt="about" />
         </div>
         <div class="about__card">
           <span><i class="ri-calendar-check-line"></i></span>
@@ -104,7 +107,7 @@
     <h2 class="section__header">Hand Picked Rooms</h2>
     <div class="room__grid">
       <div class="room__card">
-        <img src="../assets/room-1.jpg" alt="room" />
+        <img src="./assets/room-1.jpg" alt="room" />
         <div class="room__card__details">
           <div>
             <h4>ONE BED ROOM SUITE</h4>
@@ -114,7 +117,7 @@
         </div>
       </div>
       <div class="room__card">
-        <img src="../assets/room-2.jpg" alt="room" />
+        <img src="./assets/room-2.jpg" alt="room" />
         <div class="room__card__details">
           <div>
             <h4>Family Suite</h4>
@@ -124,7 +127,7 @@
         </div>
       </div>
       <div class="room__card">
-        <img src="../assets/room-3.jpg" alt="room" />
+        <img src="./assets/room-3.jpg" alt="room" />
         <div class="room__card__details">
           <div>
             <h4>Luxury Penthouse</h4>
@@ -153,7 +156,7 @@
         <button class="btn">Book Now</button>
       </div>
       <div class="intro__video">
-        <video src="../assets/luxury.mp4" autoplay muted loop></video>
+        <video src="./assets/luxury.mp4" autoplay muted loop></video>
       </div>
     </div>
   </section>
@@ -228,7 +231,7 @@
     </div>
     <div class="news__grid">
       <div class="news__card">
-        <img src="../assets/news-1.jpg" alt="news" />
+        <img src="./assets/news-1.jpg" alt="news" />
         <div class="news__card__title">
 
         </div>
@@ -239,7 +242,7 @@
         </p>
       </div>
       <div class="news__card">
-        <img src="../assets/news-2.jpg" alt="news" />
+        <img src="./assets/news-2.jpg" alt="news" />
         <div class="news__card__title">
 
         </div>
@@ -251,7 +254,7 @@
         </p>
       </div>
       <div class="news__card">
-        <img src="../assets/news-3.jpg" alt="news" />
+        <img src="./assets/news-3.jpg" alt="news" />
         <div class="news__card__title">
         </div>
         <h4> E-HOTEL EXECUTIVE SUITE </h4>
@@ -334,7 +337,7 @@
   </footer>
 
   <script src="https://unpkg.com/scrollreveal"></script>
-  <script src="../main.js"></script>
+  <script src="./main.js"></script>
 </body>
 
 </html>

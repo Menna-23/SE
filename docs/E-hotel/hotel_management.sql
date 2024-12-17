@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2024 at 07:19 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Dec 17, 2024 at 09:18 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,8 +34,18 @@ CREATE TABLE `bookings` (
   `check_in_date` date NOT NULL,
   `check_out_date` date NOT NULL,
   `total_price` decimal(10,2) NOT NULL,
-  `status` enum('confirmed','pending','canceled') DEFAULT 'pending'
+  `status` enum('confirmed','pending','canceled') DEFAULT 'confirmed',
+  `request` enum('request','early_checkout') DEFAULT NULL,
+  `early_checkout_date` date DEFAULT NULL,
+  `notification` enum('Approved','Denied','under-Review') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`booking_id`, `user_id`, `room_id`, `check_in_date`, `check_out_date`, `total_price`, `status`, `request`, `early_checkout_date`, `notification`) VALUES
+(1, 16, 15, '2024-12-18', '2024-12-25', 3500.00, 'confirmed', 'early_checkout', '2024-12-19', 'under-Review');
 
 -- --------------------------------------------------------
 
@@ -47,10 +57,17 @@ CREATE TABLE `history` (
   `history_id` int(11) NOT NULL,
   `booking_id` int(11) NOT NULL,
   `action_date` datetime NOT NULL DEFAULT current_timestamp(),
-  `action_type` enum('payment','cancellation','modification') NOT NULL,
+  `action_type` enum('payment','cancellation') NOT NULL DEFAULT 'payment',
   `details` text DEFAULT NULL,
   `amount` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`history_id`, `booking_id`, `action_date`, `action_type`, `details`, `amount`) VALUES
+(1, 1, '2024-12-17 17:38:34', 'payment', NULL, 3500.00);
 
 -- --------------------------------------------------------
 
@@ -68,29 +85,29 @@ CREATE TABLE `rooms` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table rooms
+-- Dumping data for table `rooms`
 --
 
-INSERT INTO rooms (room_id, room_number, type, price, status, description) VALUES
-(1, '201', 'room', '599.00', 'available', NULL),
-(2, '202', 'room', '599.00', 'available', NULL),
-(3, '203', 'room', '599.00', 'available', NULL),
-(4, '204', 'room', '599.00', 'available', NULL),
-(5, '205', 'room', '599.00', 'available', NULL),
-(6, '206', 'room', '599.00', 'available', NULL),
-(7, '207', 'room', '599.00', 'available', NULL),
-(8, '208', 'room', '599.00', 'available', NULL),
-(9, '209', 'room', '599.00', 'available', NULL),
-(11, '301', 'Suite', '999.00', 'available', NULL),
-(12, '302', 'Suite', '999.00', 'available', NULL),
-(13, '303', 'Suite', '999.00', 'available', NULL),
-(14, '304', 'Suite', '999.00', 'available', NULL),
-(15, '305', 'Suite', '999.00', 'available', NULL),
-(16, '401', 'Penthouse', '799.00', 'booked', NULL),
-(17, '402', 'Penthouse', '799.00', 'booked', NULL),
-(18, '403', 'Penthouse', '799.00', 'booked', NULL),
-(19, '404', 'Penthouse', '799.00', 'booked', NULL),
-(20, '405', 'Penthouse', '799.00', 'booked', NULL);
+INSERT INTO `rooms` (`room_id`, `room_number`, `type`, `price`, `status`, `description`) VALUES
+(1, '201', 'room', 599.00, 'available', NULL),
+(2, '202', 'room', 599.00, 'available', NULL),
+(3, '203', 'room', 599.00, 'available', NULL),
+(4, '204', 'room', 599.00, 'available', NULL),
+(5, '205', 'room', 599.00, 'available', NULL),
+(6, '206', 'room', 599.00, 'available', NULL),
+(7, '207', 'room', 599.00, 'available', NULL),
+(8, '208', 'room', 599.00, 'available', NULL),
+(9, '209', 'room', 599.00, 'available', NULL),
+(11, '301', 'Suite', 999.00, 'available', NULL),
+(12, '302', 'Suite', 999.00, 'available', NULL),
+(13, '303', 'Suite', 999.00, 'available', NULL),
+(14, '304', 'Suite', 999.00, 'available', NULL),
+(15, '305', 'Suite', 999.00, 'available', NULL),
+(16, '401', 'Penthouse', 799.00, 'booked', NULL),
+(17, '402', 'Penthouse', 799.00, 'booked', NULL),
+(18, '403', 'Penthouse', 799.00, 'booked', NULL),
+(19, '404', 'Penthouse', 799.00, 'booked', NULL),
+(20, '405', 'Penthouse', 799.00, 'booked', NULL);
 
 -- --------------------------------------------------------
 
@@ -114,12 +131,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `name`, `email`, `password`, `phone`, `role`, `age`, `national_id`) VALUES
-(7, '', '', '', '', '', 0, 0),
-(8, '11', 'emai@ggg.com', '11', '11', 'customer', 11, 11),
-(10, '11', 'eai@ggg.com', '11', '11', 'customer', 11, 111),
-(12, '11', 'eai@gagg.com', '11', '11', 'customer', 11, 11111111),
-(13, '11', 'e2ai@gagg.com', '11', '11', 'customer', 11, 22),
-(14, '11', '1emai@ggg.com', '111', '11', 'customer', 11, 11112);
+(16, 'Marwan', 'marwan@gmail.com', '$2y$10$2cLGBrv6W8FwEhVVYHQJCO4GKJ3bHVupzAEEM83R.PwKLtZ0GFBdm', '01178946587', 'customer', 21, 115244);
 
 --
 -- Indexes for dumped tables
@@ -162,25 +174,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables

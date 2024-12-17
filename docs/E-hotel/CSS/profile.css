@@ -14,19 +14,21 @@ h1 {
     color: #ffffff;
     text-align: center;
 }
+
 header {
     background-color: rgba(0, 0, 0, 0.4);
     color: rgb(0, 0, 0);
     padding: 5px 10px;
     text-align: right;
-    
+
     top: 0px;
     left: 0px;
     z-index: 1;
     width: calc(100% - 20px);
 }
 
-header button {
+header button,
+.request-btn {
     background-color: #595757;
     color: white;
     padding: 4px 8px;
@@ -43,8 +45,10 @@ header button:hover {
 
 .container {
     display: flex;
-    flex-direction: column; /* تجعل العناصر تحت بعض */
-    justify-content: flex-start; /* محاذاة العناصر من الأعلى */
+    flex-direction: column;
+    /* تجعل العناصر تحت بعض */
+    justify-content: flex-start;
+    /* محاذاة العناصر من الأعلى */
     padding: 20px;
     margin-top: 60px;
 }
