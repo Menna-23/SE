@@ -1,7 +1,10 @@
 
 <?php
 session_start();
-
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../HTML/sign_in.html");
+    die();
+}
 // Fetch room details and error messages from the session
 $room = $_SESSION['room'] ?? null;
 $error_message = $_SESSION['error_message'] ?? null;
@@ -56,9 +59,15 @@ unset($_SESSION['error_message']);
         <?php if ($room): ?>
             <div class="room-container">
                 <div class="room">
-                    <img src="room1.jpg" alt="Room 1">
+                <?php if ($room['type']=='room'): ?>
+                    <img src="../assets/room-1.jpg" alt="Room 1">
+                    <?php elseif ($room['type']=='Suite'): ?>
+                    <img src="../assets/room-2.jpg" alt="Room 2">
+                    <?php elseif ($room['type']=='Penthouse'): ?>
+                    <img src="../assets/room-3.jpg" alt="Room 3">
+                    <?php endif; ?>
                     <p>Type: <?php echo htmlspecialchars($room['type']); ?></p>
-                    <p>Price: <?php echo htmlspecialchars($room['price']); ?></p>
+                    <p>Price: <?php echo htmlspecialchars($room['price']) ;echo " EGP"; ?></p>
                     <button>Book Now</button>
                 </div>
             </div>

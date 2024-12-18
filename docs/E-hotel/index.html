@@ -29,7 +29,7 @@
         <li><a href="#news">TOP RATED ROOMS</a></li>
       </ul>
       <form action="./PHP/search_rooms.php" method="post">
-        <button type="submit" name="profile">Profile</button>
+        <button type="submit" name="profile" class="profile-icon"></button>
       </form>
     </div>
   </nav>
@@ -38,20 +38,19 @@
     <div class="section__container header__container">
       <p class="section__subheader">ABOUT US</p>
       <h1>The Perfect<br />Base For You</h1>
-      <button class="btn">Take A Tour</button>
     </div>
   </header>
 
   <section class="booking">
     <div class="section__container booking__container">
-      <form action="./PHP/search_rooms.php" method="post">
+      <form action="./PHP/search_rooms.php" method="post" onsubmit="return validateDates()">
         <div class="input__group">
           <label for="arrival">Arrival Date</label>
-          <input type="date" placeholder="Your Arrival Date" name="check_in" />
+          <input type="date" placeholder="Your Arrival Date" name="check_in" id="check_in" />
         </div>
         <div class="input__group">
           <label for="departure">Departure Date</label>
-          <input type="date" placeholder="Your Departure Date" name="check_out" />
+          <input type="date" placeholder="Your Departure Date" name="check_out" id="check_out" />
         </div>
         <div class="input__group">
           <label for="type">Room Type</label>
@@ -97,7 +96,7 @@
           offer an unparalleled escape from the ordinary, inviting you to
           explore a subterranean world of wonders.
         </p>
-        <button class="btn">Book Now</button>
+        <a href="./PHP/averooms.php" class="btn">Book Now</a>
       </div>
     </div>
   </section>
@@ -153,7 +152,7 @@
           unforgettable stay, where the depths of comfort and excitement await
           your arrival.
         </p>
-        <button class="btn">Book Now</button>
+        <a href="./PHP/averooms.php" class="btn">Book Now</a>
       </div>
       <div class="intro__video">
         <video src="./assets/luxury.mp4" autoplay muted loop></video>

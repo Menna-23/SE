@@ -103,7 +103,7 @@ select:focus {
     overflow: hidden;
     width: 300px; 
     text-align: center;
-    padding: 15px;
+    padding-bottom: 15px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 

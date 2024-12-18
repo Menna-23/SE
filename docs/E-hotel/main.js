@@ -1,3 +1,4 @@
+
 const menuBtn = document.getElementById("menu-btn");
 const navLinks = document.getElementById("nav-links");
 const menuBtnIcon = menuBtn.querySelector("i");
@@ -52,3 +53,25 @@ ScrollReveal().reveal(".news__card", {
   ...scrollRevealOption,
   interval: 500,
 });
+
+function validateDates() {
+  const checkInField = document.getElementById('check_in');
+  const checkOutField = document.getElementById('check_out');
+
+  const checkIn = new Date(checkInField.value);
+  const checkOut = new Date(checkOutField.value);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); 
+
+  if (checkIn < today) {
+    alert('Arrival date cannot be earlier than today.');
+    return false;
+  }
+
+  if (checkOut <= checkIn) {
+    alert('Departure date must be at least one day after arrival date.');
+    return false;
+  }
+
+  return true; 
+}
