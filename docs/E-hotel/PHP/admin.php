@@ -2,6 +2,12 @@
 session_start();
 include("connection.php");
 
+if (isset($_POST['log-out'])) {
+    session_destroy();
+    header("location: ../index.html");
+    die;
+}
+
 // Fetch booking requests to cancel 
 $booking_requests_query = "SELECT * FROM bookings WHERE request = 'early_checkout'";
 $booking_requests_result = $conn->query($booking_requests_query);
@@ -97,7 +103,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['room_number'], $_POST[
 <body>
     <header>
         <h1>Admin Panel</h1>
-        <button onclick="window.location.href='logout.php'" class="logout-btn">Logout</button>
+        <form action="profile.php" method="POST">
+        <button type="submit" name="log-out" class="logout-btn">Logout</button>
+</Form>
     </header>
 
     <main>

@@ -100,6 +100,7 @@ $user = $result->fetch_assoc();
                         <li>
                             <span>Action Type:</span> <?= htmlspecialchars($row['action_type']) ?> |
                             <span>Action Date:</span> <?= htmlspecialchars($row['action_date']) ?> |
+                            <span>check out date:</span> <?= htmlspecialchars($row['check_out_date'])  ?> |
                             <span>Total Price:</span> <?= htmlspecialchars($row['total_price']) ?>
                         </li>
                     <?php endforeach; ?>

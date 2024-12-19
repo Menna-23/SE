@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 // Password matches
                 $_SESSION['user_id'] = $user_data['user_id'];
                 if ($user_data['role'] === "admin") {
-                    header("Location: ../HTML/admin.html");
+                    header("Location: ./admin.php");
                     die;
                 } else {
                     header("Location: ../index.html");

@@ -43,18 +43,18 @@
 
   <section class="booking">
     <div class="section__container booking__container">
-      <form action="./PHP/search_rooms.php" method="post" onsubmit="return validateDates()">
+      <form action="./PHP/averooms.php" method="post" onsubmit="return validateDates()">
         <div class="input__group">
           <label for="arrival">Arrival Date</label>
-          <input type="date" placeholder="Your Arrival Date" name="check_in" id="check_in" />
+          <input type="date" placeholder="Your Arrival Date" name="check_in" id="check_in" required/>
         </div>
         <div class="input__group">
           <label for="departure">Departure Date</label>
-          <input type="date" placeholder="Your Departure Date" name="check_out" id="check_out" />
+          <input type="date" placeholder="Your Departure Date" name="check_out" id="check_out" required/>
         </div>
         <div class="input__group">
           <label for="type">Room Type</label>
-          <select placeholder="type of the room" name="type" id="type">
+          <select placeholder="type of the room" name="type" id="type" required>
             <option value="room">one bed room</option>
             <option value="Suite">family Suite</option>
             <option value="Penthous">Penthous</option>
