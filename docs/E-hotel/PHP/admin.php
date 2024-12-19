@@ -9,7 +9,21 @@ if (isset($_POST['log-out'])) {
 }
 
 // Fetch booking requests to cancel 
-$booking_requests_query = "SELECT * FROM bookings WHERE request = 'early_checkout'";
+$booking_requests_query = "
+SELECT 
+    rooms.room_number,
+    users.name AS user_name,
+    bookings.check_out_date,
+     bookings.early_checkout_date,
+     bookings.booking_id
+FROM 
+    rooms
+INNER JOIN 
+    bookings ON bookings.room_id = rooms.room_id
+INNER JOIN 
+    users ON bookings.user_id = users.user_id
+WHERE request = 'early_checkout'";
+
 $booking_requests_result = $conn->query($booking_requests_query);
 
 // Fetch all rooms 
@@ -115,9 +129,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['room_number'], $_POST[
             <?php if ($booking_requests_result->num_rows > 0): ?>
                 <?php while ($row = $booking_requests_result->fetch_assoc()): ?>
                     <div class="request">
-                        <p><strong>Room_number</strong> <?php echo $row['room_id']; ?></p>
-                        <p><strong>Requested By:</strong> <?php echo $row['user_id']; ?></p>
-                        <p><strong>Requested By:</strong> <?php echo $row['check_out_date']; ?></p>
+                        <p><strong>Room_number</strong> <?php echo $row['room_number']; ?></p>
+                        <p><strong>Requested By:</strong> <?php echo $row['user_name']; ?></p>
+                        <p><strong>current checkout date:</strong> <?php echo $row['check_out_date']; ?></p>
+                        <p><strong>new date:</strong> <?php echo $row['early_checkout_date']; ?></p>
                         <form method="POST" action="">
     <input type="hidden" name="booking_id" value="<?php echo $row['booking_id']; ?>">
     <button type="submit" class="accept-btn" name="accept">Accept</button>

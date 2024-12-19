@@ -96,16 +96,17 @@ $user = $result->fetch_assoc();
             <?php $history = fetchUserHistory($conn, $user_id); ?>
             <ul>
                 <?php if (!empty($history)): ?>
-                    <?php foreach ($history as $row): ?>
-                        <li>
-                            <span>Action Type:</span> <?= htmlspecialchars($row['action_type']) ?> |
-                            <span>Action Date:</span> <?= htmlspecialchars($row['action_date']) ?> |
-                            <span>check out date:</span> <?= htmlspecialchars($row['check_out_date'])  ?> |
-                            <span>Total Price:</span> <?= htmlspecialchars($row['total_price']) ?>
-                        </li>
-                    <?php endforeach; ?>
+                <?php foreach ($history as $row): ?>
+                <li>
+                    <span>Action Type:</span> <?= htmlspecialchars($row['action_type']) ?> |
+                    <span>Action Date:</span> <?= htmlspecialchars($row['action_date']) ?> |
+                    <span>Room Number:</span> <?= htmlspecialchars($row['room_number']) ?> |
+                    <span>check out date:</span> <?= htmlspecialchars($row['check_out_date'])  ?> |
+                    <span>Total Price:</span> <?= htmlspecialchars($row['total_price']) ?>
+                </li>
+                <?php endforeach; ?>
                 <?php else: ?>
-                    <li>No history found.</li>
+                <li>No history found.</li>
                 <?php endif; ?>
             </ul>
         </div>
@@ -114,6 +115,21 @@ $user = $result->fetch_assoc();
         <div class="section">
             <h2>Early Check-out Request</h2>
             <form action="profile.php" method="POST">
+                <label for="room_number">Select Room Number:</label>
+                <select name="room_number" id="room_number" required>
+                    <?php
+                    // Re-fetch room data for the dropdown
+                    $user_rooms = fetchUserRooms($conn, $user_id);
+                    if (!empty($user_rooms)):
+                        foreach ($user_rooms as $room): ?>
+                    <option value="<?= htmlspecialchars($room['room_id']); ?>">
+                        <?= htmlspecialchars($room['room_number']); ?>
+                    </option>
+                    <?php endforeach; ?>
+                    <?php else: ?>
+                    <option value="" >No rooms available</option>
+                    <?php endif; ?>
+                </select>
                 <label for="early_date">Early Check-out Date</label>
                 <input type="date" id="early_date" name="early_date" required />
                 <button type="submit" name="submit_early_checkout" class="request-btn">Request</button>
@@ -121,8 +137,8 @@ $user = $result->fetch_assoc();
 
             <!-- Display Notification -->
             <?php if (isset($_SESSION['notification'])): ?>
-                <div class="notification"><?= htmlspecialchars($_SESSION['notification']); ?></div>
-                <?php unset($_SESSION['notification']); ?>
+            <div class="notification"><?= htmlspecialchars($_SESSION['notification']); ?></div>
+            <?php unset($_SESSION['notification']); ?>
             <?php endif; ?>
         </div>
 

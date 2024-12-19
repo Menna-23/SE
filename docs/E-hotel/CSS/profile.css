@@ -45,12 +45,12 @@ header button:hover {
 
 .container {
     display: flex;
-    flex-direction: column;
-    /* تجعل العناصر تحت بعض */
-    justify-content: flex-start;
-    /* محاذاة العناصر من الأعلى */
-    padding: 20px;
-    margin-top: 60px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+        padding: 20px;
+        margin-top: 60px;
 }
 
 

@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
 
-    <form action="averooms.php" method="post" onsubmit="return validateDates()">
+    <form action="averooms.php" class="forma" method="post" onsubmit="return validateDates()">
         <div class="form-group">
             <label for="arrival">Arrival Date</label>
             <input type="date" id="check_in" name="check_in" placeholder="Your Arrival Date" required />
@@ -120,8 +120,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php endif; ?>
     </main>
 <?php
-unset($_SESSION['room']);
-unset($_SESSION['error_message']);
+if (!isset($_SESSION['refreshed'])) {
+    $_SESSION['refreshed'] = true;
+} else {
+    unset($_SESSION['room']);
+    unset($_SESSION['error_message']);
+    unset($_SESSION['refreshed']); 
+}
 ?>
     <script src="../avroom.js"></script>
 </body>
