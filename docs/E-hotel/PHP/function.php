@@ -46,7 +46,7 @@ function fetchUserHistory($conn, $user_id)
         LEFT JOIN history h ON b.booking_id = h.booking_id
         LEFT JOIN rooms r ON b.room_id = r.room_id
         WHERE b.user_id = ?
-    ";  //(b:Bookings      h:History    r:rooms)
+    "; 
 
     $stmt = $conn->prepare($history_query);
     if (!$stmt) {
@@ -98,7 +98,7 @@ function fetchUserRooms($conn, $user_id)
 }
 
 
-// Function to store check-in, check-out, and room type into the database 
+ 
 function storeRoomBooking($checkInDate, $checkOutDate, $roomType, $userId)
 {
     include("connection.php");

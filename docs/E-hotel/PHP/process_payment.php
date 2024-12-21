@@ -10,7 +10,6 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $userId = $_SESSION['user_id']; 
-
 $userHistory = fetchUserHistory($conn, $userId);
 
 if (!empty($userHistory)) {
@@ -30,7 +29,7 @@ if (!empty($userHistory)) {
 
 $check_in = $_SESSION['check_in'] ?? '';
 $check_out = $_SESSION['check_out'] ?? '';
-$type = $_SESSION['room']['type'] ?? '';
+$type = $_POST['type'] ?? '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pay'])) {
     $card = $_POST['card'] ?? '';

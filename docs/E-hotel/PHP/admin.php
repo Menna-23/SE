@@ -8,7 +8,6 @@ if (isset($_POST['log-out'])) {
     die;
 }
 
-// Fetch booking requests to cancel 
 $booking_requests_query = "
 SELECT 
     rooms.room_number,
@@ -26,14 +25,14 @@ WHERE request = 'early_checkout'";
 
 $booking_requests_result = $conn->query($booking_requests_query);
 
-// Fetch all rooms 
+
 $room_status_query = "SELECT * FROM rooms";
 $room_status_result = $conn->query($room_status_query);
 
 
-$room_status_query_update = "SELECT * FROM rooms where status not like 'booked'";
+$room_status_query_update = "SELECT * FROM rooms";
 $room_status_result_update = $conn->query($room_status_query_update );
-// Fetch rooms that have check_out date as today
+
 $today = date('Y-m-d');
 $rooms_available_today_query = "SELECT r.*
 FROM rooms r
@@ -44,7 +43,7 @@ $rooms_available_today_result = $conn->query($rooms_available_today_query);
 if (isset($_POST['accept']) && isset($_POST['booking_id'])) {
     $booking_id = intval($_POST['booking_id']);
 
-    // Update check_out_date, reset early_checkout_date, and request
+
     $approve_query = "UPDATE `bookings`
                       SET total_price = total_price/(check_out_date-check_in_date)*(early_checkout_date-check_in_date) , 
                       `check_out_date` = `early_checkout_date`,
@@ -66,7 +65,7 @@ if (isset($_POST['accept']) && isset($_POST['booking_id'])) {
 if (isset($_POST['reject']) && isset($_POST['booking_id'])) {
     $booking_id = intval($_POST['booking_id']);
 
-    // Reset early_checkout_date and clear the request
+
     $deny_query = "UPDATE `bookings`
                    SET `early_checkout_date` = NULL,
                        `request` = NULL,
@@ -123,7 +122,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['room_number'], $_POST[
     </header>
 
     <main>
-        <!-- Requests Section -->
         <section class="requests-section">
             <h2>Booking Requests</h2>
             <?php if ($booking_requests_result->num_rows > 0): ?>
@@ -145,11 +143,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['room_number'], $_POST[
             <?php endif; ?>
         </section>
 
-        <!-- Room Status Section -->
-       <!-- Room Status Section -->
+
 <section class="room-status-section">
     <h2>Room Status</h2>
-    <!-- Table to display all rooms and their statuses -->
+
     <table border="1" cellspacing="0" cellpadding="10">
         <thead>
             <tr>
@@ -173,13 +170,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['room_number'], $_POST[
         </tbody>
     </table>
 
-    <!-- Form to update room status -->
+
     <h3>Update Room Status</h3>
     <form method="POST" action="">
         <label for="room_number">Select Room Number:</label>
         <select name="room_number" id="room_number" required>
             <?php 
-            // Re-fetch room data for the dropdown
+
             $room_status_result_update = $conn->query($room_status_query_update );
             if ($room_status_result_update->num_rows > 0): 
                 while ($row = $room_status_result_update->fetch_assoc()): ?>
@@ -203,7 +200,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['room_number'], $_POST[
 </section>
 
 
-        <!-- Rooms Available Today -->
         <section class="available-today-section">
             <h2>Rooms will be Available Today</h2>
             <table>

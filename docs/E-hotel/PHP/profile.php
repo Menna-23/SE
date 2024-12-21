@@ -3,36 +3,38 @@ session_start();
 include("connection.php");
 include("function.php");
 
-// Log-out logic
+
 if (isset($_POST['log-out'])) {
     session_destroy();
     header("location: ../index.html");
     die;
 }
 
-// Check if early check-out form is submitted
+
+
 if (isset($_POST['submit_early_checkout'])) {
-    if (!empty($_POST['early_date'])) {
+    if (!empty($_POST['early_date']) && !empty($_POST['room_number'])) {
         $early_checkout_date = $_POST['early_date'];
+        $room_id = $_POST['room_number'];
         $user_id = getLoggedInUserId();
 
-        // Query to check if the requested early checkout date is valid
-        $query = "SELECT check_out_date FROM bookings WHERE user_id = ? AND check_out_date > ?";
+
+        $query = "SELECT check_out_date FROM bookings WHERE user_id = ? AND room_id = ? AND check_out_date > ?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("is", $user_id, $early_checkout_date);
+        $stmt->bind_param("iis", $user_id, $room_id, $early_checkout_date);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            // Update the early checkout request
+
             $update_query = "UPDATE bookings 
                              SET early_checkout_date = ?, notification = 'under-Review', request='early_checkout' 
-                             WHERE user_id = ? AND check_out_date > ? LIMIT 1";
+                             WHERE user_id = ? AND room_id = ? AND check_out_date > ? LIMIT 1";
             $stmt = $conn->prepare($update_query);
-            $stmt->bind_param("ssi", $early_checkout_date, $user_id, $early_checkout_date);
+            $stmt->bind_param("siis", $early_checkout_date, $user_id, $room_id, $early_checkout_date);
 
             if ($stmt->execute()) {
-                $_SESSION['notification'] = "Your early checkout request is under review.";
+                $_SESSION['notification'] = "Your early checkout request for Room ID $room_id is under review.";
             } else {
                 $_SESSION['notification'] = "Error processing your request. Please try again.";
             }
@@ -40,11 +42,11 @@ if (isset($_POST['submit_early_checkout'])) {
             $_SESSION['notification'] = "Invalid early checkout date. Ensure it's before your original check-out date.";
         }
     } else {
-        $_SESSION['notification'] = "Please select an early check-out date.";
+        $_SESSION['notification'] = "Please select an early check-out date and room.";
     }
 }
 
-// Get user data
+
 $user_id = getLoggedInUserId();
 if ($user_id === null) {
     header("location: ../HTML/sign_in.html");
@@ -78,7 +80,7 @@ $user = $result->fetch_assoc();
     </header>
 
     <div class="container">
-        <!-- User Data Section -->
+
         <div class="section">
             <h2>User Data</h2>
             <ul>
@@ -90,7 +92,7 @@ $user = $result->fetch_assoc();
             </ul>
         </div>
 
-        <!-- Booking and History Section -->
+
         <div class="section">
             <h2>Booking and History</h2>
             <?php $history = fetchUserHistory($conn, $user_id); ?>
@@ -111,23 +113,22 @@ $user = $result->fetch_assoc();
             </ul>
         </div>
 
-        <!-- Early Check-out Request Section -->
+
         <div class="section">
             <h2>Early Check-out Request</h2>
             <form action="profile.php" method="POST">
                 <label for="room_number">Select Room Number:</label>
                 <select name="room_number" id="room_number" required>
                     <?php
-                    // Re-fetch room data for the dropdown
                     $user_rooms = fetchUserRooms($conn, $user_id);
                     if (!empty($user_rooms)):
                         foreach ($user_rooms as $room): ?>
                     <option value="<?= htmlspecialchars($room['room_id']); ?>">
                         <?= htmlspecialchars($room['room_number']); ?>
                     </option>
-                    <?php endforeach; ?>
-                    <?php else: ?>
-                    <option value="" >No rooms available</option>
+                    <?php endforeach;
+                    else: ?>
+                    <option value="">No rooms available</option>
                     <?php endif; ?>
                 </select>
                 <label for="early_date">Early Check-out Date</label>
@@ -135,27 +136,38 @@ $user = $result->fetch_assoc();
                 <button type="submit" name="submit_early_checkout" class="request-btn">Request</button>
             </form>
 
-            <!-- Display Notification -->
+
             <?php if (isset($_SESSION['notification'])): ?>
             <div class="notification"><?= htmlspecialchars($_SESSION['notification']); ?></div>
             <?php unset($_SESSION['notification']); ?>
             <?php endif; ?>
         </div>
 
-        <!-- Check Request Status Section -->
+
         <div class="section">
             <h2>Check Request Status</h2>
             <?php
-            $status_query = "SELECT notification FROM bookings WHERE user_id = ? LIMIT 1";
-            $stmt = $conn->prepare($status_query);
-            $stmt->bind_param("i", $user_id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $status = $result->fetch_assoc();
-            echo $status ? htmlspecialchars($status['notification']) : "No request submitted yet.";
+
+            if (isset($_POST['room_number'])) {
+                $room_id = $_POST['room_number'];
+            } else {
+                $room_id = null;
+            }
+
+
+            if ($room_id) {
+                $status_query = "SELECT notification FROM bookings WHERE user_id = ? AND room_id = ? LIMIT 1";
+                $stmt = $conn->prepare($status_query);
+                $stmt->bind_param("ii", $user_id, $room_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $status = $result->fetch_assoc();
+                echo $status ? htmlspecialchars($status['notification']) : "No request submitted for this room yet.";
+            } else {
+                echo "Please select a room to check the status.";
+            }
             ?>
         </div>
-    </div>
 </body>
 
 </html>

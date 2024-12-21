@@ -21,12 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             FROM rooms r
             LEFT JOIN bookings b ON r.room_id = b.room_id
             WHERE r.type LIKE ? 
-            AND (r.status = 'available' 
-            OR (b.check_out_date < ? OR b.check_in_date > ?))
+            AND (r.status = 'available' )
             LIMIT 1
         ");
         $type_param = "%$type%";
-        $stmt->bind_param("sss", $type_param, $check_in_date, $check_out_date);
+        $stmt->bind_param("s", $type_param);
         $stmt->execute();
         $result = $stmt->get_result();
 
