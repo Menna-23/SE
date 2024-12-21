@@ -97,36 +97,3 @@ function fetchUserRooms($conn, $user_id)
     return $rooms;
 }
 
-
- 
-function storeRoomBooking($checkInDate, $checkOutDate, $roomType, $userId)
-{
-    include("connection.php");
-
-    $roomQuery = "SELECT room_id FROM rooms WHERE type = ? LIMIT 1";
-    $stmtRoom = $conn->prepare($roomQuery);
-    $stmtRoom->bind_param("s", $roomType);
-    $stmtRoom->execute();
-    $result = $stmtRoom->get_result();
-    $check_in_date = date('Y-m-d', strtotime($checkInDate));
-    $check_out_date = date('Y-m-d', strtotime($checkOutDate));
-
-    if ($row = $result->fetch_assoc()) {
-        $roomId = $row['room_id'];
-    } else {
-        echo "Error: Room type not found.";
-        $stmtRoom->close();
-        $conn->close();
-        return;
-    }
-    $stmtRoom->close();
-
-    $stmt = $conn->prepare("INSERT INTO bookings (user_id, room_id, check_in_date, check_out_date, status) VALUES (?, ?, ?, ?, 'confirmed')");
-    $stmt->bind_param("iiss", $userId, $roomId, $check_in_date, $check_out_date);
-
-    if ($stmt->execute()) {
-        echo "Booking information stored successfully.";
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-}
