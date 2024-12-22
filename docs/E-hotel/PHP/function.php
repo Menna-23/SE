@@ -41,12 +41,13 @@ function fetchUserHistory($conn, $user_id)
             h.action_type,
             h.action_date,
             b.check_out_date,
+            b.check_in_date,
             r.room_number
         FROM bookings b
         LEFT JOIN history h ON b.booking_id = h.booking_id
         LEFT JOIN rooms r ON b.room_id = r.room_id
         WHERE b.user_id = ?
-    "; 
+    ";
 
     $stmt = $conn->prepare($history_query);
     if (!$stmt) {
@@ -96,4 +97,3 @@ function fetchUserRooms($conn, $user_id)
 
     return $rooms;
 }
-

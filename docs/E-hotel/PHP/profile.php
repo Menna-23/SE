@@ -101,7 +101,7 @@ $user = $result->fetch_assoc();
                 <?php foreach ($history as $row): ?>
                 <li>
                     <span>Action Type:</span> <?= htmlspecialchars($row['action_type']) ?> |
-                    <span>Action Date:</span> <?= htmlspecialchars($row['action_date']) ?> |
+                    <span>check in Date:</span> <?= htmlspecialchars($row['check_in_date']) ?> |
                     <span>Room Number:</span> <?= htmlspecialchars($row['room_number']) ?> |
                     <span>check out date:</span> <?= htmlspecialchars($row['check_out_date'])  ?> |
                     <span>Total Price:</span> <?= htmlspecialchars($row['total_price']) ?>

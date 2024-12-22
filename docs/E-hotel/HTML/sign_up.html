@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/sign_up.css">
     <title>Sign Up</title>
-     <link rel="stylesheet" href="sign_up.css">
+    <link rel="stylesheet" href="sign_up.css">
 </head>
 
 <body>
@@ -21,22 +21,22 @@
 
 
         <label for="pho">Phone Number:</label>
-        <input type="number" id="pho" name="pho" required>
+        <input type="number" id="pho" name="pho" required minlength="11">
 
 
         <input type="hidden" name="role" value="customer">
 
 
         <label for="nat_id">National ID:</label>
-        <input type="number" id="nat_id" name="nat_id" required>
+        <input type="number" id="nat_id" name="nat_id" required minlength="16">
 
 
         <label for="age">Age:</label>
-        <input type="number" id="age" name="age" required>
+        <input type="number" id="age" name="age" required maxlength="3">
 
 
         <label for="Password">Password:</label>
-        <input type="password" id="Password" name="Password" required>
+        <input type="password" id="Password" name="Password" required minlength="8">
 
 
         <button type="submit">Sign Up</button>
